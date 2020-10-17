@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+			 <style>
+				 .winds{
+					 height: 500px;
+				 }
+				 .title{
+					 color: saddlebrown;
+					 text-align: center;
+				 }
+				 .img{
+					 height: 280px;
+					 display: block;
+				 }
+				 .video{
+					 display: none;
+				 }
+				 .buttons{
+					 display: inline;
+					 position: relative;
+					 bottom: 340px;
+					 padding-left: 100px;
+				 }
+				 .buttons button{
+					 width: 100px;
+					 height: 50px;
+				 }
+				
+			 </style>
+	</head>
+	<body >
+		<div >
+			<h1 class="title">从你的全世界路过</h1>
+		</div>
+		<div >
+			<div id = 'bofang' class="video">
+				<video width="640"  controls id="video1">
+				<source src="cndqsjlg/cndqsjlg.mp4" type="video/mp4">
+				</video>
+				<div class="buttons" id="app1">
+					<button onclick="retreat()" type="button">后退</button>
+					<button onclick="playto()" type="button">{{zhuangtai}}</button>
+					<button onclick="setCurTime()" type="button"> 快进</button>
+				</div>						
+			</div>
+		</div>
+		
+		<img class="img"  id="img1" src="img/cndqsjlg.jpg" onclick="playing()" />
+		<script type="text/javascript">
+		var video2 = document.getElementById('video1')
+		video2.controls=true;
+		var bofangshu = true
+		function playto(){
+			video2.play()
+			if(bofangshu === true){
+				app1.$data.zhuangtai = "停止"
+				bofangshu = !bofangshu
+			}
+			else{
+				video2.pause()
+				app1.$data.zhuangtai = "开始"
+				bofangshu = !bofangshu
+			}
+		}
+		function setCurTime()
+		{ 
+		  video2.currentTime=10 + video2.currentTime;
+		} 
+		function retreat(){
+			video2.currentTime = video2.currentTime - 10;
+		}
+		var app1 = new Vue({
+	
+			el:'#app1',
+			data:{
+				title1:"从你的全是世界路过",
+				zhuangtai:"停止"
+			}
+		})
+		function playing(){
+			var img1 = document.getElementById('img1')
+			var video1 = document.getElementById('bofang')
+			video2.play()
+			bofangshu = false
+			img1.style.display = 'none'
+			video1.style.display = 'block'
+		}
+		</script>
+	</body>
+</html>
+
